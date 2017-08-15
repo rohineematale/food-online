@@ -1,0 +1,29 @@
+<div class="container">
+  <%= link_to " << Back to orders", orders_path %>
+  <div class="order_detail">
+    <u><h3 class="text-center">Order Details</h3></u>
+    <br>
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <u><h4>Shipping Details</h4></u>
+        <%= get_address(@order.address) %>
+      </div>
+      <div class="col-md-4 pull-right">
+        <p>Order ID: <%= @order.order_number %></p>
+        <p>Order Status: <%= @order.status.titlecase %></p>
+        <%- if @delivery_boy.present? %>
+          <u><h5>Delivery Boy Details : </h5></u>
+          <p><%= @delivery_boy.name %></p>
+          <p><%= @delivery_boy.phone_number %></p>
+          <p><%= image_tag @delivery_boy.photo.image(:thumb) if @delivery_boy.photo %> </p>
+        <%- end %>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="order_detail">
+        <%= render partial: "/carts/cart_summary", locals: {parent: @order} %>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

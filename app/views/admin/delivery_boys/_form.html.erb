@@ -1,0 +1,21 @@
+<div class="col-sm-8">
+  <%= form_for [:admin, @delivery_boy], class: "form" do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.fields_for :photo do |photo_form| %>
+        <%= f.label :image %>
+        <%= photo_form.file_field :image, class: "form-control" %>
+        <p>valid image formats are jpeg, jpg, png.</p>
+      <%- end %>
+    </div>
+    <%= f.submit "Submit", class: "btn btn-info"%>
+    <%= link_to "Cancel", admin_delivery_boys_path %>
+  <%- end %>
+</div>

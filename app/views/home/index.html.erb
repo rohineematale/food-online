@@ -1,0 +1,21 @@
+<div class="container">
+  <%- @products.in_groups_of(3, false).each do |group| %>
+    <div class='row'>
+      <%- group.each do |product| %>
+        <div class='col-md-3 product_thumbnail'>
+          <%= image_tag(product.photo.image(:medium), class: "img-responsive") %>
+          <h3>
+            <%= link_to product.name, product_details_path(slug: product.slug), class: "product_details" %>
+          </h3>
+          <div>
+            <p class="pull-left"><%= number_to_indian_currency(product.price) %><p>
+            <div id="<%= @cart.id %><%= product.id %>" class="pull-right">
+              <%= render partial: "/items/form", locals:{product:product} %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="clearfix"></div>
+  <% end %>
+</div>

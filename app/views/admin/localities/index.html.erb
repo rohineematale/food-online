@@ -1,0 +1,27 @@
+<h2>Locality</h2>
+<h2 class="pull-right"><%= link_to "Add New", new_admin_locality_path, class: "btn btn-info"%></h2>
+<%- if @localities.present? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Pincode</th>
+        <th>Is Deliverable?</th>
+        <th>Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- for locality in @localities %>
+        <tr>
+          <td><%= locality.pincode %></td>
+          <td><%= locality.is_deliverable? ? "True" : "False" %></td>
+          <td>
+            <%= link_to "Edit", edit_admin_locality_path(locality), class: "btn btn-info" %> |
+            <%= link_to "Delete", admin_locality_path(locality), method: "delete", class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <%- end %>
+    </tbody>
+  </table>
+<%- else %>
+  <p>No locality added. Please add it from <%= link_to "here", new_admin_locality_path %></p>
+<%- end %>

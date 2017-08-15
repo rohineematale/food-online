@@ -1,0 +1,2 @@
+module Admin::DeliveryBoysHelper
+end

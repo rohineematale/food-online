@@ -1,0 +1,37 @@
+<%- if @cart.items.present? %>
+  <div class="container">
+    <h3>Cart Details</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">Product</th>
+          <th class="text-center">Amount</th>
+          <th class="text-center">Quantity</th>
+          <th class="text-center">Total Amount</th>
+          <th class="text-center">Manage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @cart.items.each do |item| %>
+          <tr id="cart-item<%= @cart.id %><%= item.id %>">
+            <%= render partial: '/items/item_detail', locals:{item:item} %>
+          </tr>
+        <%- end %>
+        <tr>
+          <td class="text-center">&nbsp;</td>
+          <td class="text-center">&nbsp;</td>
+          <td class="text-center">&nbsp;</td>
+          <td class="text-center" id="cart_tota_amt"><%= number_to_indian_currency(@cart.total_amount) %></td>
+          <td class="text-center"><%= link_to "Checkout", new_order_path, class: "btn btn-info" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<%- else %>
+  <div class="container product_thumbnail">
+    <h3>You have not added any food item yet...!!!</h3>
+    <br/>
+    <br/>
+    <%= link_to "Shop Now", root_path, class: "btn btn-warning"%>
+  </div>
+<%- end %>

@@ -1,0 +1,32 @@
+<%- product_item = @cart.items.find_all{|i| i.food_item_id == product.id}.last %>
+<%- if product.is_food_available?%>
+  <%- if product_item.present? and product_item.quantity > 0 %>
+    <div class="row text-center">
+      <div class="col-md-3 col-xs-offset-2">
+        <%= form_for @cart, remote: true do |f| %>
+          <%= f.hidden_field :food_item_id, value: product.id %>
+          <%= f.hidden_field :quantity, value: -1 %>
+          <%= f.submit "-1", class: "btn btn-default" %>
+        <%- end %>
+      </div>
+      <div class="col-md-2">
+        <p class="btn-container"><%= get_product_quantity(product.id) %></p>        
+      </div>
+      <div class="col-md-3">
+        <%= form_for @cart, remote: true do |f| %>
+          <%= f.hidden_field :food_item_id, value: product.id %>
+          <%= f.hidden_field :quantity, value: 1 %>
+          <%= f.submit "+1", class: "btn btn-default" %>
+        <%- end %>
+      </div>
+    </div>
+  <%- else %>
+    <%= form_for Item.new, remote: true do |f| %>
+      <%= f.hidden_field :food_item_id, value: product.id %>
+      <%= f.hidden_field :quantity, value: 1 %>
+      <%= f.submit "Add to Cart", class: "btn btn-warning pull-right" %>
+    <%- end %>
+  <%- end %>
+<%- else %>
+  <p> Unavailable </p>
+<%- end %>

@@ -1,0 +1,8 @@
+<%- time_slot_ids = @food_item.time_slots.pluck(:id) %>
+<%- for time_slot in TimeSlot.all %>
+  <div class="checkbox">
+    <label>
+      <%= check_box_tag "food_item[time_slot_ids][]", time_slot.id, time_slot_ids.include?(time_slot.id) %> <%= time_slot.display_title %>
+    </label>
+  </div>
+<%- end %>

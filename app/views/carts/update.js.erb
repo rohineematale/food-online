@@ -1,0 +1,12 @@
+<%- if @item.errors.present? %>
+  alert("error");
+<%- else %>
+  $("#<%= @cart.id %><%= @item.food_item_id %>").html("<%= escape_javascript (render partial: '/items/form', locals:{product:@item.food_item}) %>")
+  <%- if @item.quantity < 1%>
+    $("#cart-item<%= @cart.id %><%= @item.id %>").fadeOut();
+  <%- else %>
+    $("#cart-item<%= @cart.id %><%= @item.id %>").html("<%= escape_javascript (render partial: '/items/item_detail', locals:{item:@item}) %>")
+  <%- end %>
+  $("#cart_tota_amt").html("<%= number_to_indian_currency(@cart.total_amount) %>")
+  $("#header_cart").html("Cart (<%= @cart.items.count %>)")
+<%- end %>

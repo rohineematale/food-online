@@ -1,0 +1,9 @@
+<%- if @addr.errors.present? %>
+  $(".error_message").remove();
+  <% for field in @addr.errors.keys() %>
+    $("#address_<%= field %>").after('<%= escape_javascript("<span class='error_message'>#{@addr.errors[field].first}</span>").html_safe %>');
+  <% end %>
+<%- else %>
+$('#myModal').modal('hide');
+window.location.href = "<%= new_order_path %>";
+<%- end %>

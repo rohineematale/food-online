@@ -1,0 +1,18 @@
+<br><br>
+<table class="table">
+  <%- for item in parent.items %>
+    <tr>
+      <td>
+        <%= image_tag(item.food_item.product_image(:thumb)) %><br>
+        <%= link_to item.food_item_name, product_details_path(slug: item.food_item_slug), class: "product_details" %>
+      </td>
+      <td class="text-center">
+        <%= number_to_indian_currency(item.price) %> X <%= item.quantity %>
+      </td>
+    </tr>
+  <%- end %>
+  <tr>
+    <th class="text-center">Total</th>
+    <th class="text-center"><%= number_to_indian_currency(parent.total_amount) %></th>
+  </tr>
+</table>

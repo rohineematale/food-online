@@ -1,0 +1,29 @@
+<h2>Delivery Boy's Detail</h2>
+<h2 class="pull-right"><%= link_to "Add New", new_admin_delivery_boy_path, class: "btn btn-info"%></h2>
+<%- if @delivery_boys.present? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- for delivery_boy in @delivery_boys %>
+        <tr>
+          <td><%= image_tag(delivery_boy.photo.image(:small)) if delivery_boy.photo %></td>
+          <td><%= delivery_boy.name %></td>
+          <td><%= delivery_boy.phone_number %></td>
+          <td>
+            <%= link_to "Edit", edit_admin_delivery_boy_path(delivery_boy), class: "btn btn-info" %> |
+            <%= link_to "Delete", admin_delivery_boy_path(delivery_boy), method: "delete", class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <%- end %>
+    </tbody>
+  </table>
+<%- else %>
+  <p>No details added for delivery boys. Please add it from <%= link_to "here", new_admin_delivery_boy_path %></p>
+<%- end %>

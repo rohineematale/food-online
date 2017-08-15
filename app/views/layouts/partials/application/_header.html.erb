@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="<%= root_path %>">Food Online</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <%= form_tag root_path, method: "GET", class: "navbar-form navbar-left" do |f| %>
+        <div class="form-group">
+          <%= text_field_tag :search_text, params[:search_text], {class: "form-control", placeholder: "Search"} %>
+        </div>
+        <%= submit_tag "Search", class: "btn btn-default"%>
+      <% end %>
+
+      <ul class="nav navbar-nav navbar-right">
+        <%- if user_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Orders(s)", orders_path %></li>
+              <li><%= link_to "My Address(s)", addresses_path %></li>
+              <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Log Out", destroy_user_session_path, method: "DELETE" %></li>
+            </ul>
+          </li>
+        <%- else %>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li><%= link_to "Sign In", new_user_session_path %></li>
+        <%- end %>
+        <li><%= link_to "Cart (#{@cart.items.count})", carts_path, id:"header_cart" %></li>
+      </ul>
+    </div>
+  </div>
+</nav>

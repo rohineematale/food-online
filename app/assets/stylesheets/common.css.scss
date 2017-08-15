@@ -1,0 +1,99 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+.copyright{
+  text-align: center;
+  vertical-align: middle;
+}
+
+.min_body_height{
+  min-height: 600px !important;
+}
+
+.product_thumbnail{
+  box-shadow: 0px 0px 5px #e8e0e0;
+  margin: 0px 15px 15px 60px;
+  padding: 10px;
+  max-height: 330px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.order_detail, .address_details{
+  box-shadow: 0px 0px 5px #e8e0e0;
+  margin: 5px;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.order_detail{
+  margin: 10px 60px 10px 60px;
+}
+
+.address_details .height-160{
+  height: 200px;
+}
+
+.product_thumbnail img{
+  height: 200px;
+  margin: 0 auto;
+}
+
+a.product_details{
+  color: #000;
+}
+
+.product_detail{
+  box-shadow: 0px 0px 5px #e8e0e0;
+  margin: 0px 15px 15px 20px;
+  padding: 10px;
+  max-height: 330px;
+  vertical-align: middle;
+}
+
+.product_detail_img{
+  text-align: center;
+  margin: 0 auto;
+}
+
+.btn-container{
+  text-align: center;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 5px 7px;
+  font-size: 14px;
+}
+
+#payment_form_container, #address_form_container{
+  box-shadow: 0px 0px 5px #e8e0e0;
+  padding: 10px;
+  margin: -10px;
+}
+
+.hidden{
+  display: none;
+}
+
+.error_message{
+  color:red;
+}
+
+.devise-form{
+  box-shadow: 0px 0px 5px #e8e0e0;
+  margin: 10px;
+}
+
+.alert-notice {
+  background-color: #d9edf7;
+  border-color: #bcdff1;
+  color: #31708f;
+}
+
+.alert-alert {    
+  background-color: #f2dede;
+  border-color: #ebcccc;
+  color: #a94442;
+}

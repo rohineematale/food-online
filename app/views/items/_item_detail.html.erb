@@ -1,0 +1,12 @@
+<td class="text-center">
+  <%= image_tag(item.food_item.product_image(:thumb)) %><br>
+  <%= link_to item.food_item_name, product_details_path(slug: item.food_item_slug), class: "product_details" %>
+</td>
+<td class="text-center"><%= number_to_indian_currency(item.price) %></td>
+<td class="text-center">
+  <div id="<%= @cart.id %><%= item.food_item_id %>">
+    <%= render partial: "/items/form", locals:{product:item.food_item} %>
+  </div>
+</td>
+<td class="text-center"><%= number_to_indian_currency(item.quantity*item.price) %></td>
+<td class="text-center"><%= link_to "X", item_path(id: item.id), method: 'DELETE', remote:true, class: "btn btn-danger" %></td>

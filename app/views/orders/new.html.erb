@@ -1,0 +1,49 @@
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <%= form_for Address.new, class: 'form', remote: true do |f| %>
+        <div class="modal-body">
+          <%= render partial: "/addresses/form", locals:{f: f} %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Save", class: "btn btn-info" %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      <%- end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h3>Place Order</h3><br>
+  <div class="row">
+    <div class="col-md-8">
+      <%= form_for @order, class: 'form' do |f| %>
+        <div id="payment_form_container">
+          <h4>Select Payment Method: </h4>
+          <div class="form-group">
+            <%= f.fields_for :payment_method, @order.payment_method do |payment_form| %>
+              <%= render partial: "payment_form", locals:{f: payment_form} %>
+            <%- end %>
+          </div>
+        </div>
+        <br/>
+        <%= render partial: "address_form", locals: {f:f} %>
+        <br/>
+        <div class='row'>
+          <div class="form-group pull-right">
+            <%= f.submit "Order Now >>", class: "btn btn-warning"%>
+          </div>
+        </div>
+      <%- end %>
+    </div>
+    <div class="col-md-3">
+      <%= link_to "Edit Cart", carts_path, class: "pull-right btn btn-info"%>
+      <%= render partial: "/carts/cart_summary", locals: {parent:@cart} %>
+    </div>
+  </div>
+</div>

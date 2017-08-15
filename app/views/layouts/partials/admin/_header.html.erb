@@ -1,0 +1,25 @@
+<div id="sidebar-wrapper">
+  <ul id="sidebar_menu" class="sidebar-nav">
+     <li class="sidebar-brand"><a id="menu-toggle" href="#">FoodOnlineAdmin</a></li>
+  </ul>
+  <ul class="sidebar-nav" id="sidebar">
+    <li class="<%= active_nav("time_slots") %>">
+      <a href="<%= admin_time_slots_path %>">Time Slot</a>
+    </li>
+    <li class="<%= active_nav("food_items") %>">
+      <a href="<%= admin_food_items_path %>">Food Item</a>
+    </li>
+    <li class="<%= active_nav("orders") %>">
+      <a href="<%= admin_orders_path %>">Orders</a>
+    </li>
+    <li class="<%= active_nav("delivery_boys") %>">
+      <a href="<%= admin_delivery_boys_path %>">Delivery Boys</a>
+    </li>
+    <li class="<%= active_nav("localities") %>">
+      <a href="<%= admin_localities_path %>">Localities</a>
+    </li>
+    <li>&nbsp;</li>
+    <li>&nbsp;</li>
+    <li><%= link_to "Sign Out", destroy_admin_session_path, method: "delete" %></li>
+  </ul>
+</div>

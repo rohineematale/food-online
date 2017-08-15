@@ -1,0 +1,21 @@
+<%- addresses = current_user.addresses %>
+<div class="form-group">
+  <h4>
+    <%= "Select Address or " if addresses.present? %>
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Add New Address</button>
+  </h4>
+  <%- addresses.in_groups_of(2, false).each do |group| %>
+    <div class='row'>
+      <%- group.each do |addr| %>
+        <div class='col-md-5 address_details'>
+          <div class="height-160">
+            <%= get_address(addr) %>
+            <br/><br/>
+          </div>
+          <%= f.radio_button :address_id, addr.id, checked: (addr.is_primary? || @order.address_id == addr.id) %> Deliver to this address
+        </div>
+      <%- end %>
+    </div>
+    <div class='clearfix'></div>
+  <%- end %>
+</div>

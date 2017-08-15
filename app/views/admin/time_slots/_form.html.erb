@@ -1,0 +1,27 @@
+<div class="col-sm-8">
+  <%= form_for [:admin, @time_slot], class: "form" do |f| %>
+    <div class="form-group">
+      <%= f.label :start_time %>
+      <%= f.time_field :start_time, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :end_time %>
+      <%= f.time_field :end_time, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :start_date %>
+      <%= f.date_field :start_date, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :end_date %>
+      <%= f.date_field :end_date, class: "form-control" %>
+    </div>
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :is_special %> Is Special
+      </label>
+    </div>
+    <%= f.submit "Submit", class: "btn btn-info"%>
+    <%= link_to "Cancel", admin_time_slots_path %>
+  <%- end %>
+</div>

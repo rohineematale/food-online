@@ -1,0 +1,27 @@
+<div class="container">
+  <h3 class="text-center">Order History</h3>
+  <%- if @order.present? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">Order Id</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Order Placed At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @order.each do |order| %>
+          <tr>
+            <td class="text-center"><%= link_to order.order_number, order_path(order) %></td>
+            <td class="text-center"><%= order.status.titlecase %></td>
+            <td class="text-center"><%= order.created_at.strftime("%d/%m/%y %H:%M") %></td>
+          </tr>
+        <%- end %>
+      </tbody>
+    </table>
+  <%- else %>
+    <div class="container product_thumbnail">
+      <h3>You haven't purchased anything yet...!!!</h3>
+    </div>
+  <%- end %>
+</div>

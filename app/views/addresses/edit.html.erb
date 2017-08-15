@@ -1,0 +1,17 @@
+<div class="container">
+  <h4> Edit Address:</h4>
+    <%= form_for @addr do |f| %>
+      <%= render partial: "form", locals:{f:f} %>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <%= f.check_box :is_primary, class: "btn btn-warning"%>
+          <%= f.label :is_primary %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class="form-group pull-right">
+          <%= f.submit "Save", class: "btn btn-warning"%>
+        </div>
+      </div>
+  <%- end %>
+</div>

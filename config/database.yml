@@ -1,0 +1,18 @@
+# Mysql
+#   gem install mysql2
+#
+#   Ensure the mysql gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  pool: 30
+
+development:
+  <<: *default
+  username: root
+  password: Admin@123
+  host: localhost
+  database: online_food_order_dev

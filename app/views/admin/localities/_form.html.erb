@@ -1,0 +1,13 @@
+<%= form_for [:admin, @locality], class: "form" do |f| %>
+  <div class="form-group">
+    <%= f.label :pincode %>
+    <%= f.text_field :pincode, class: "form-control" %>
+  </div>
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :is_deliverable %> Is deliverable?
+    </label>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-info"%>
+  <%= link_to "Cancel", admin_localities_path %>
+<%- end %>

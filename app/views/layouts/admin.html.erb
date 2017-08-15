@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FoodOnline</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'admin/base', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <div id="wrapper" class="active">
+      <%- if admin_signed_in? %>
+        <%= render partial: "layouts/partials/admin/header" %>
+      <%- end %>
+      <div id="page-content-wrapper">
+        <div class="page-content inset">
+          <div class="row min_body_height">
+            <div class="col-md-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-11">
+                    <%= render partial: "layouts/partials/flash_messages", flash: flash %>
+                    <%= yield %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <%= render partial: "layouts/partials/application/footer" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

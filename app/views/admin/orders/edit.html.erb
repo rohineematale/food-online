@@ -1,0 +1,48 @@
+<h4>Update order <%= @order.order_number %>
+<%= link_to "Back to orders", admin_orders_path, class: "btn btn-info pull-right" %>
+</h4>
+<br><br>
+<%= form_for [:admin, @order] do |f|%>
+  <table class="table">
+    <tr>
+      <th>Order Number</th>
+      <td>:</td>
+      <td><%= @order.order_number %></td>
+    </tr>
+    <tr>
+      <th>Order Status</th>
+      <td>:</td>
+      <td>
+        <%- unless @order.delivered? %>
+          <%= f.select :status, options_for_select([:confirm_order, :dispatched_order, :delivered], selected: @order.status), {:include_blank => "Select Status"}, class: "form-control" %>
+        <%- else %>
+          <%= @order.status.titlecase  %>
+        <%- end %>
+      </td>
+    </tr>
+    <tr>
+      <th>User Email</th>
+      <td>:</td>
+      <td><%= @order.user_email %></td>
+    </tr>
+    <tr>
+      <th>Shipping Address</th>
+      <td>:</td>
+      <td><%= @order.shipping_address %></td>
+    </tr>
+    <tr>
+      <th>Deliver Boy</th>
+      <td>:</td>
+      <td>
+        <%- if @order.confirm_order? %>
+          <%= f.select :delivery_boy_id, options_for_select(DeliveryBoy.pluck(:name, :id), selected: @order.delivery_boy_id), {:include_blank => "Select Status"}, class: "form-control" %>
+        <%- else %>
+          <%= @order.delivery_boy_name  %>
+        <%- end %>
+      </td>
+    </tr>
+  </table>
+  <%= f.submit "Update", class: "btn btn-warning"%>
+<%- end %>
+<h4>Ordered food items</h4>
+<%= render partial: "/carts/cart_summary", locals:{parent: @order}%>

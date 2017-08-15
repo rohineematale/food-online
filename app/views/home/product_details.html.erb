@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="product_detail product_detail_img col-md-5">
+      <%= image_tag(@product.product_image(:thumbnail)) %>
+    </div>
+    <div class="product_detail col-md-5">
+      <h3><%= @product.name.upcase %></h3>
+      <hr>
+      <p><%= @product.description %></p>
+        <h2><%= number_to_indian_currency(@product.price) %></h2>
+        <div id="<%= @cart.id %><%= @product.id %>" class="pull-right">
+          <%= render partial: "/items/form", locals:{product:@product} %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>

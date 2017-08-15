@@ -1,0 +1,31 @@
+<h2>Food Items</h2>
+<h2 class="pull-right"><%= link_to "Add New", new_admin_food_item_path, class: "btn btn-info"%></h2>
+<%- if @food_items.present? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Desciption</th>
+        <th>Price</th>
+        <th>Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- for food_item in @food_items %>
+        <tr>
+          <td><%= image_tag(food_item.photo.image(:small)) if food_item.photo %></td>
+          <td><%= food_item.name %></td>
+          <td><%= food_item.description %></td>
+          <td><%= food_item.price %></td>
+          <td>
+            <%= link_to "Edit", edit_admin_food_item_path(food_item), class: "btn btn-info" %> |
+            <%= link_to "Delete", admin_food_item_path(food_item), method: "delete", class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <%- end %>
+    </tbody>
+  </table>
+<%- else %>
+  <p>No food item added. Please add it from <%= link_to "here", new_admin_food_item_path %></p>
+<%- end %>

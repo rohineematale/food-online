@@ -1,0 +1,7 @@
+<div class="row radio">
+  <%- for type in PaymentMethod.pay_types.keys %>
+    <div class="form-group col-md-3">
+      <label> <%= f.radio_button :pay_type, type, checked: ((type == 'cod' || f.object.pay_type == type) ? true : false) %><%= type.titlecase%></label>
+    </div>
+  <%- end %>
+</div>

@@ -1,0 +1,7 @@
+<%- if @item.errors.present? %>
+  alert("error");
+<%- else %>
+  $("#cart-item<%= @cart.id %><%= @item.id %>").fadeOut();
+  $("#cart_tota_amt").html("<%= number_to_indian_currency(@cart.total_amount) %>")
+  $("#header_cart").html("Cart (<%= @cart.items.count %>)")
+<%- end %>

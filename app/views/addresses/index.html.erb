@@ -1,0 +1,36 @@
+<div class="container">
+  <h3 class="text-center">My Addresses
+    <%= link_to "New Address", new_address_path, class: "btn btn-info pull-right" %>
+  </h3>
+  <%- if @addresses.present? %>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">Address</th>
+          <th class="text-center">Is Primary</th>
+          <th class="text-center">Manage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @addresses.each do |addr| %>
+          <tr>
+            <td class="text-center"><%= get_address(addr) %></td>
+            <td class="text-center"><%= addr.is_primary ? "Primary Addess" : '' %></td>
+            <td class="text-center">
+              <%= link_to "Edit", edit_address_path(addr) %> | 
+              <%= link_to "Delete", address_path(id: addr), method: "DELETE" %>
+            </td>
+          </tr>
+        <%- end %>
+      </tbody>
+    </table>
+  <%- else %>
+    <div class="container product_thumbnail">
+      <h3>You have not added any address yet...!!!</h3>
+      <br/>
+      <br/>
+      <%= link_to "Add New Address", new_address_path, class: "btn btn-warning"%>
+    </div>
+  <%- end %>
+</div>

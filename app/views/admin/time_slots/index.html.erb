@@ -1,0 +1,33 @@
+<h2>Time Slots</h2>
+<h2 class="pull-right"><%= link_to "Add New", new_admin_time_slot_path, class: "btn btn-info"%></h2>
+<%- if @time_slots.present? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Is Special?</th>
+        <th>Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- for time_slot in @time_slots %>
+        <tr>
+          <td><%= time_slot.start_time %></td>
+          <td><%= time_slot.end_time %></td>
+          <td><%= time_slot.start_date %></td>
+          <td><%= time_slot.end_date %></td>
+          <td><%= time_slot.is_special? ? "True" : "False" %></td>
+          <td>
+            <%= link_to "Edit", edit_admin_time_slot_path(time_slot), class: "btn btn-info" %> |
+            <%= link_to "Delete", admin_time_slot_path(time_slot), method: "delete", class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <%- end %>
+    </tbody>
+  </table>
+<%- else %>
+  <p>No time slot added. Please add it from <%= link_to "here", new_admin_time_slot_path %></p>
+<%- end %>

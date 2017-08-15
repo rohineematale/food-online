@@ -1,0 +1,22 @@
+<div class="container">
+  <p> Dear <%= @order.address_name %>, </p>
+  <p> Thank you for ordering food from Food Online. Please find your order details below. </p>
+  <p> Order Number : <%= @order.order_number %> </p>
+  <%= render partial: "/carts/cart_summary", locals: {parent:@order} %>
+  <p> We will update you further once your order is confirmed and dispatched. </p>
+  <p>Order will deliver to : </p>
+  <%= get_address(@order.address ) %>
+  <br/>
+  </b><p>
+    <% if @order.payment_method.cod? %>
+      Please have the total amount ready in cash to receive your product upon delivery. Our courier partner will not be able to collect cheques or demand drafts.
+    <% elsif @order.payment_method.online_payment? %>
+      <b> Online payment order should redirect to payment gateway. But as its development site, user can go to admin section and confirm order. </b>
+    <% end %>
+  </p>
+  <br><br>
+  <p>
+    If there are any questions for contact us at 
+    <a href="mailto:feedback@foodonline.com" style="color: blue; outline: medium none; text-decoration: underline; transition: all 300ms ease 0s;" target="_blank">feedback@foodonline.com</a>
+  </p>
+</div>

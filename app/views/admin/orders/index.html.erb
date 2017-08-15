@@ -1,0 +1,30 @@
+<h2>Order</h2>
+<%- if @orders.present? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Order Number</th>
+        <th>User Email</th>
+        <th>Order Status</th>
+        <th>Created At</th>
+        <th>Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- for order in @orders %>
+        <tr>
+          <td><%= order.order_number %></td>
+          <td><%= order.user_email %></td>
+          <td><%= order.status.titlecase %></td>
+          <td><%= order.created_at.strftime("%d/%m/%y %H:%M") %></td>
+          <td>
+            <%= link_to "Edit", edit_admin_order_path(order), class: "btn btn-info" %> |
+            <%= link_to "Delete", admin_order_path(order), method: "delete", class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <%- end %>
+    </tbody>
+  </table>
+<%- else %>
+  <p>No order found</p>
+<%- end %>
